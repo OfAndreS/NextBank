@@ -15,7 +15,7 @@ public class Main
 
     private final ConsoleUI ui = new ConsoleUI(scanner);
     private final ContaService myContaService = new ContaService(scanner, ui);
-    private final ContaFactory myContaFactory = new ContaFactory(scanner, ui);
+    private final ContaFactory myContaFactory = new ContaFactory(scanner, ui, myContaService);
     private final ClienteFactory myClienteFactory = new ClienteFactory(scanner, ui);
     
 
