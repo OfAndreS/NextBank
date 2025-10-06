@@ -7,16 +7,16 @@
 -----
 
 <div align="center"\>
-  <strong>Um sistema de console em Java para gerenciamento de entregas.</strong\>
+  <strong>Um sistema de console em Java para simulação de gerenciamento bancário.</strong\>
 </div>
 
 <br>
 
 <div align="center">
-  <img src="https://img.shields.io/github/license/OfAndreS/FastDelivery?style=for-the-badge" alt="Licença">
-  <img src="https://img.shields.io/github/stars/OfAndreS/FastDelivery?style=for-the-badge" alt="Stars">
-  <img src="https://img.shields.io/github/forks/OfAndreS/FastDelivery?style=for-the-badge" alt="Forks">
-  <img src="https://img.shields.io/github/last-commit/OfAndreS/FastDelivery?style=for-the-badge" alt="Último Commit">
+  <img src="https://img.shields.io/github/license/OfAndreS/NextBank?style=for-the-badge" alt="Licença">
+  <img src="https://img.shields.io/github/stars/OfAndreS/NextBank?style=for-the-badge" alt="Stars">
+  <img src="https://img.shields.io/github/forks/OfAndreS/NextBank?style=for-the-badge" alt="Forks">
+  <img src="https://img.shields.io/github/last-commit/OfAndreS/NextBank?style=for-the-badge" alt="Último Commit">
 </div>
 
 <br>
@@ -33,7 +33,7 @@
 
 |**Sobre o Projeto**|
 |-|
-|O FastDelivery é um sistema de console em Java para gerenciamento de entregas. Ele permite a criação de entregas, associando diferentes tipos de veículos e entregadores, e calcula o custo total com base na distância. O projeto utiliza o padrão de projeto Factory para a criação de veículos e entregadores, promovendo um código mais organizado e extensível.|
+|O NextBank é um sistema de simulação bancária desenvolvido em Java para ser executado via console. O projeto foi criado como parte da disciplina de Linguagem de Programação 2, com o objetivo de aplicar conceitos fundamentais de Programação Orientada a Objetos (POO). O sistema permite gerenciar clientes e suas contas, processar transações financeiras básicas e calcular tributos, simulando as operações de um banco digital.|
 
 <br>
 
@@ -49,10 +49,10 @@
 
 | **Funcionalidades** |
 |---|
-| <p align="justify">  Criação de Entregas: <br> <br> - Permite a criação de novas entregas de forma interativa, selecionando o tipo de veículo e de entregador, e informando a distância. </p> |
-| <p align="justify"> Cálculo de Custo: <br> <br> - Calcula o custo de cada entrega com base no tipo de veículo e no tipo de entregador, além da distância percorrida. </p> |
-| <p align="justify"> Listagem de Entregas: <br> <br> - Exibe uma lista de todas as entregas cadastradas, com detalhes sobre o veículo, o entregador e o valor total. </p> |
-| <p align="justify"> Modo de Teste: <br> <br> - Oferece um modo automático para a criação de entregas com dados fixos, facilitando a demonstração e o teste do sistema. </p> |
+| <p align="justify">  Criação de Clientes e Contas: <br> <br> -  Permite o cadastro de novos clientes e a abertura de Contas Corrente ou Poupança. A geração do número da conta é feita de forma automática e sequencial. </p> |
+| <p align="justify">Transações Financeiras: <br> <br> - Suporte completo para operações de depósito, saque e transferência entre contas, com validações de saldo. </p> |
+| <p align="justify"> Regras de Negócio Específicas: <br> <br> - Aplicação de taxa de 5% sobre o valor de saques e transferências realizadas a partir de Contas Corrente. </p> |
+| <p align="justify"> Cálculo de Tributos: <br> <br> - Sistema para calcular e consolidar o total de tributos, aplicando uma alíquota de 1% sobre o saldo de todas as Contas Corrente. </p> |
 | <p align="justify"> Interface de Console: <br> <br> - Interage com o usuário através de um menu de console simples e intuitivo. </p> |
 
 <br>
@@ -65,30 +65,26 @@
 <br>
 
 ```bash
-FastDelivery/
+NextBank/
 └── src/
     └── main/
         └── java/
             └── com/
-                └── fastdelivery/
+                └── nextbank/
                     ├── application/
-                    │   └── Main.java               # Classe principal, inicia a aplicação e o menu.
+                    │   └── Main.java               # Classe principal que inicia a aplicação e o menu.
                     ├── factory/
-                    │   ├── EntregaFactory.java     # Cria novas instâncias de Entrega.
-                    │   ├── EntregadorFactory.java  # Cria entregadores (Funcionário ou Autônomo).
-                    │   └── VeiculoFactory.java     # Cria veículos (Carro ou Moto).
+                    │   ├── ClienteFactory.java     # Cria instâncias de Cliente.
+                    │   └── ContaFactory.java       # Cria instâncias de Conta (Corrente ou Poupança).
                     ├── interfaces/
-                    │   └── Custo.java              # Interface que define o método para calcular o frete.
+                    │   └── ITributavel.java        # Interface que define o contrato para cálculo de tributos.
                     ├── model/
-                    │   ├── Autonomo.java           # Modelo para o entregador autônomo.
-                    │   ├── Carro.java              # Modelo para o veículo carro.
-                    │   ├── EntregadorAbstrato.java # Classe base para os tipos de entregadores.
-                    │   ├── Funcionario.java        # Modelo para o entregador funcionário.
-                    │   ├── Moto.java               # Modelo para o veículo moto.
-                    │   └── VeiculoAbstrato.java    # Classe base para os tipos de veículos.
+                    │   ├── Cliente.java            # Modelo para o cliente.
+                    │   ├── Conta.java              # Classe abstrata base para os tipos de contas.
+                    │   ├── ContaCorrente.java      # Modelo para a conta corrente.
+                    │   └── ContaPoupanca.java      # Modelo para a conta poupança.
                     ├── service/
-                    │   ├── Entrega.java            # Representa uma entrega individual.
-                    │   └── ServicoEntrega.java     # Gerencia a lista de entregas e os cálculos.
+                    │   └── ContaService.java       # Gerencia as operações de contas e clientes.
                     └── util/
                         ├── AppConfig.java          # Armazena constantes e configurações da aplicação.
                         └── ConsoleUI.java          # Controla a interface do usuário no console.
@@ -151,7 +147,7 @@ if (-not (Test-Path -Path "bin")) { New-Item -ItemType Directory -Path "bin" }; 
 4 ) **Execute a classe principal a partir do diretório `src`:**
 
 ```bash
-java -cp bin com.fastdelivery.application.Main
+java -cp bin com.nextbank.application.Main
 ```
 
 </details>
