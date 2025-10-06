@@ -38,7 +38,7 @@
 <br>
 
 <div align="center"\>
-  <img width="1279" height="620" alt="image" src="https://github.com/user-attachments/assets/641d4153-5e5a-416a-b563-d50ed48ad6c4" />
+  <img width="1102" height="500" alt="image" src="https://github.com/user-attachments/assets/c6fc7925-3a6c-4189-8d06-afb3a99ba65a" />
 </div>
 
 <br>
