@@ -16,6 +16,12 @@ public class Main
 
     public void startMenu() 
     {
+
+        ui.printHead();
+        ui.printNextBankAsciiV2();
+        System.out.println("\n\n| Made by: André Soares Gomes Moreira");
+
+
         while (true) 
         {
             ui.printHead();
