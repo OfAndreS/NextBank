@@ -131,7 +131,7 @@ git clone https://github.com/OfAndreS/FastDelivery.git
 2 ) **Navegue até o diretório `src` do projeto:**
 
 ```bash
-cd FastDelivery
+cd NextBank
 ```
 
 3 ) **Compile todos os arquivos Java a partir do diretório `src`:**
