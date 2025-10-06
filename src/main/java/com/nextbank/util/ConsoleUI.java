@@ -18,6 +18,52 @@ public class ConsoleUI {
         System.out.println("\n|  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\n");
     }
 
+    public <T> T input(String texto, Class<T> tipoRetorno) {
+        while (true) {
+            try {
+                System.out.print(texto);
+                Object valor; 
+
+                if (tipoRetorno == Integer.class) 
+                {
+                    valor = scanner.nextInt();
+                } 
+                else if (tipoRetorno == Double.class) 
+                {
+                    valor = scanner.nextDouble();
+                } 
+                else if (tipoRetorno == Float.class) 
+                {
+                    valor = scanner.nextFloat();
+                } 
+                else if (tipoRetorno == String.class) 
+                {
+                    return tipoRetorno.cast(scanner.nextLine());
+                } else 
+                {
+                    throw new IllegalArgumentException("Tipo de retorno não suportado: " + tipoRetorno.getName());
+                }
+                scanner.nextLine();
+                
+                return tipoRetorno.cast(valor);
+
+            } 
+            catch (InputMismatchException e) 
+            {
+                System.out.println("| Erro: Entrada inválida para o tipo esperado. Tente novamente.");
+                scanner.nextLine(); 
+            } 
+            catch (Exception e) 
+            {
+                System.out.println("| Erro inesperado: " + e.getMessage());
+                if(scanner.hasNextLine()) 
+                {
+                    scanner.nextLine();
+                }
+            }
+        }
+    }
+
     public int selector(List<String> myObjList) 
     {
         while (true) 

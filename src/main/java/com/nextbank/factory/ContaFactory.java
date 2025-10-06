@@ -42,14 +42,13 @@ public class ContaFactory
     private ContaCorrente createContaCorrente()
     {   
         System.out.println("| Qual o saldo Inicial");
-        double saldoInicial = scanner.nextDouble();
+        double saldoInicial = ui.input("| Qual o saldo Inicial: ", Double.class);
         return new ContaCorrente(this.myCliente, saldoInicial);
     }
 
     private ContaPoupanca createContaPoupanca()
     {   
-        System.out.println("| Qual o saldo Inicial");
-        double saldoInicial = scanner.nextDouble();
+        double saldoInicial = ui.input("| Qual o saldo Inicial: ", Double.class);
         return new ContaPoupanca(this.myCliente, saldoInicial);
     }
 
@@ -61,12 +60,13 @@ public class ContaFactory
         System.out.println("|                              ");
         System.out.println("| Selecionar Cliente           ");
 
-        if (!this.myContaService.printAllObjects("OFF", "CLIENTE")) {
+        if (!this.myContaService.printAllObjects("OFF", "CLIENTE")) 
+        {
             System.out.println("| Cancele a operação, pois não há clientes para associar a uma conta.");
             return null;
         }
 
-        int userInput = scanner.nextInt(); scanner.nextLine(); // Limpa o buffer
+        int userInput = ui.input("| Escolha: ", Integer.class);
 
         if(userInput < 0 || userInput >= this.myContaService.getClienteList().size())
         {
