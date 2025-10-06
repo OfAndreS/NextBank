@@ -6,13 +6,11 @@ public abstract class Conta implements ITributavel
 {
     protected double saldo;
     protected Cliente myCliente;
-    protected String numeroCliente;
 
-    public Conta(Cliente myCliente, String numeroCliente, double saldo)
+    public Conta(Cliente myCliente, double saldo)
     {
         this.saldo = saldo;
         this.myCliente = myCliente;
-        this.numeroCliente = numeroCliente;
     }
 
     public Cliente getCliente()

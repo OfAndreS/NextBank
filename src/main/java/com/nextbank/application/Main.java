@@ -14,9 +14,9 @@ public class Main
     private final Scanner scanner = new Scanner(System.in);
 
     private final ConsoleUI ui = new ConsoleUI(scanner);
-    private final ContaService myContaService = new ContaService(scanner);
+    private final ContaService myContaService = new ContaService(scanner, ui);
     private final ContaFactory myContaFactory = new ContaFactory(scanner, ui);
-    private final ClienteFactory myClienteFacFactory = new ClienteFactory(scanner, ui);
+    private final ClienteFactory myClienteFactory = new ClienteFactory(scanner, ui);
     
 
     public void startMenu() 
@@ -31,8 +31,8 @@ public class Main
                 System.out.println("| START MENU                                         ");
                 System.out.println("|                                                    ");
                 System.out.println("| ( 1 ) - Criar Novo Cliente - Modo Interativo       ");
-                System.out.println("| ( 2 ) -                                            ");
-                System.out.println("| ( 3 ) -                                            ");
+                System.out.println("| ( 2 ) - Criar Nova Conta   - Modo Interativo       ");
+                System.out.println("| ( 3 ) - Exibir Listas                              ");
                 System.out.println("| ( 4 ) -                                            ");
                 System.out.println("| ( 0 ) - Sair                                       ");
                 System.out.println("|                                                    ");
@@ -41,7 +41,13 @@ public class Main
                 switch (scanner.nextLine()) 
                 {
                     case "1":
-                        myContaService.addCliente(myClienteFacFactory.createClienteFromConsole());
+                        myContaService.addCliente(myClienteFactory.createClienteFromConsole());
+                        break;
+                    case "2":
+                        myContaService.addConta(myContaFactory.createContaFromConsole());
+                        break;
+                    case "3":
+                        myContaService.printAllObjects("ON", null);
                         break;
                     case "0":
                         System.out.println("| Saindo do sistema...");

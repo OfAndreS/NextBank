@@ -5,15 +5,18 @@ import java.util.Scanner;
 
 import com.nextbank.model.Cliente;
 import com.nextbank.model.Conta;
+import com.nextbank.model.ContaCorrente;
+import com.nextbank.model.ContaPoupanca;
+import com.nextbank.service.ContaService;
 import com.nextbank.util.AppConfig;
 import com.nextbank.util.ConsoleUI;
 
 public class ContaFactory 
 {
 
-    private final Scanner scanner;
     private final ConsoleUI ui;
-
+    private final Scanner scanner;
+    private Cliente myCliente;
     
     public ContaFactory(Scanner scanner, ConsoleUI ui) 
     {
@@ -27,29 +30,55 @@ public class ContaFactory
         switch (tipoConta) 
         {
             case "CORRENTE":
-                return null;
-                // return createContaCorrente();
+                return createContaCorrente();
             case "POUPANCA":
-                return null;
-                // return createContaPoupanca();
+                return createContaPoupanca();
             default:
                 throw new IllegalArgumentException("Tipo de entregador desconhecido: " + tipoConta);
         } 
     }
     
-    public Conta createConta()
+    private ContaCorrente createContaCorrente()
+    {   
+        System.out.println("| Qual o saldo Inicial");
+        double saldoInicial = scanner.nextDouble();
+        return new ContaCorrente(this.myCliente, saldoInicial);
+    }
+
+    private ContaPoupanca createContaPoupanca()
+    {   
+        System.out.println("| Qual o saldo Inicial");
+        double saldoInicial = scanner.nextDouble();
+        return new ContaPoupanca(this.myCliente, saldoInicial);
+    }
+
+    public Conta createContaFromConsole()
     {
         ui.printHead();
+
+        ContaService myContaService = new ContaService(scanner, ui);
+
         System.out.println("| CRIANDO UMA NOVA CONTA       ");
         System.out.println("|                              ");
+        System.out.println("| Selecionar Cliente           ");
+        myContaService.printAllObjects("OFF", "CLIENTE");
+
+        int userInput = scanner.nextInt();
+
+        if(userInput < 0 || userInput > myContaService.getClienteList().size())
+        {
+            System.out.println("| Conta Inexistente!");
+            System.out.println("| Cancelando!");
+            return null;
+        }
+
+        this.myCliente = myContaService.getClienteList().get(userInput);
+
         System.out.println("| Selecione o tipo de Conta:   ");
 
-        int indiceVeiculo = ui.selector(AppConfig.TIPOS_DE_CONTA);
-        String tipoVeiculo = AppConfig.TIPOS_DE_CONTA.get(indiceVeiculo);
+        String tipoDeConta = AppConfig.TIPOS_DE_CONTA.get(ui.selector(AppConfig.TIPOS_DE_CONTA));
 
-        Conta myCliente = create(tipoVeiculo);
-
-        return myCliente;
+        return create(tipoDeConta);
     }
 
 }

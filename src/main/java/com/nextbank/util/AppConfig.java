@@ -5,4 +5,5 @@ import java.util.List;
 public class AppConfig 
 {
     public static final List<String> TIPOS_DE_CONTA = List.of("CORRENTE", "POUPANCA");
+    public static final List<String> TIPOS_DE_ENTIDADE = List.of("CLIENTE", "CONTA");
 }
